@@ -49,38 +49,17 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n, avg, a, b;
+        ll n, avg;
         cin >> n;
+        double b = n;
+        ll a = n - 1;
         cout << 2 << endl;
-        if (n == 2)
-            cout << 1 << " " << 2 << endl;
-        else
+        for (ll i = 1; i < n; i++)
         {
-            for (ll i = 1; i < n; i++)
-            {
-                if (i == 1)
-                {
-                    b = n;
-                    a = n - 2;
-                    cout << a << " " << b << endl;
-                    b = (a + b) / 2;
-                }
-                else if (i == 2)
-                {
-                    a = n - 1;
-                    cout << a << " " << b << endl;
-                    b = (a + b) / 2;
-                }
-                else
-                {
-                    a = b - 2;
-                    cout << a << " " << b << endl;
-                    b = (a + b) / 2;
-                }
-            }
+            cout << a << " " << ll(b) << endl;
+            b = ceil(((a--) + b) / 2);
         }
     }
-
 #ifndef ONLINE_JUDGE
     fprintf(stderr, "\nRuntime: %.10fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC);
 #endif
