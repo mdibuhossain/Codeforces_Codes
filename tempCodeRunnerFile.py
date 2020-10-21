@@ -1,4 +1,6 @@
-
-        for second_loop in range(first_loop+1, n):
-            if abs(ar[first_loop] - ar[second_loop] < sub):
-                sub = abs(ar[first_loop] - ar[second_loop]
+t = int(input())
+count = 0
+while count < t:
+        count+=1
+        n = input()
+        print()
