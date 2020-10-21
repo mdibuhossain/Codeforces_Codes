@@ -45,12 +45,11 @@ int main()
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 #endif
-
     int t;
     cin >> t;
     while (t--)
     {
-        ll n, mx;
+        int n, cnt = 0;
         cin >> n;
         ll ar[n];
         bool tf = true;
@@ -61,33 +60,30 @@ int main()
                 tf = false;
         }
         if (tf)
-            cout << -1 << endl;
+            cout << "NO" << endl;
         else
         {
-            int j = 0;
-            mx = ar[0];
-            for (ll i = 0; i < n; i++)
-                if (ar[i] > mx)
-                {
-                    mx = ar[i];
-                    j = i;
-                }
-            for (ll i = j; 1; i++)
+            ll xx[5100] = {0};
+            cout << "YES" << endl;
+            for (int i = 0; i < n - 1; i++)
             {
-                if ((ar[i] > ar[i - 1]) && i > 0)
+                for (int j = i + 1; j < n; j++)
                 {
-                    cout << i + 1 << endl;
-                    break;
-                }
-                else if (ar[i] > ar[i + 1])
-                {
-                    cout << i + 1 << endl;
-                    break;
+                    if ((ar[i] != ar[j]) && i == 0)
+                    {
+                        cout << i + 1 << " " << j + 1 << endl;
+                        cnt++;
+                    }
+                    else if ((ar[i] != ar[j]) && (i > 0) && (cnt < n - 1))
+                    {
+                        cout << i + 1 << " " << j + 1 << endl;
+                        cnt++;
+                        break;
+                    }
                 }
             }
         }
     }
-
 #ifndef ONLINE_JUDGE
     fprintf(stderr, "\nRuntime: %.10fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC);
 #endif
