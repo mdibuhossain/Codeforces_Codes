@@ -38,11 +38,11 @@
 #include <limits>
 using namespace std;
 typedef long long int ll;
-ll fc(ll n)
+ll funFactorial(ll n)
 {
     if (n == 0)
         return 1;
-    return n * fc(n - 1);
+    return n * funFactorial(n - 1);
 }
 int main()
 {
@@ -53,7 +53,7 @@ int main()
 #endif
     ll n;
     cin >> n;
-    cout << (fc(n) * 2 / (n * n)) << endl;
+    cout << (funFactorial(n) * 2 / (n * n)) << endl;
 #ifndef ONLINE_JUDGE
     fprintf(stderr, "\nRuntime: %.10fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC);
 #endif
