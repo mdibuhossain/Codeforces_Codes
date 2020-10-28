@@ -54,26 +54,22 @@ int main()
     freopen("output.txt", "w", stdout);
 #endif
 
-    ll n, m, tm = 0;
+    int n, m;
     cin >> n >> m;
-    ll ar[m];
-    for (ll i = 0; i < m; i++)
+    if ((n == m) || m > n)
     {
-        cin >> ar[i];
-        if (i == 0)
-            tm += ar[i] - 1;
+        if (n & 1)
+            cout << "Akshat" << endl;
         else
-        {
-            if (ar[i] != ar[i - 1])
-            {
-                if (ar[i] > ar[i - 1])
-                    tm += ar[i] - ar[i - 1];
-                else
-                    tm += (n - ar[i - 1] + 1) + (ar[i] - 1);
-            }
-        }
+            cout << "Malvika" << endl;
     }
-    cout << tm << endl;
+    else if (n > m)
+    {
+        if (m & 1)
+            cout << "Akshat" << endl;
+        else
+            cout << "Malvika" << endl;
+    }
 
 #ifndef ONLINE_JUDGE
     fprintf(stderr, "\nRuntime: %.10fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC);
