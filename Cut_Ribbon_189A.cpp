@@ -54,10 +54,29 @@ int main()
     freopen("output.txt", "w", stdout);
 #endif
 
-    
+    int n, a, b, c;
+    cin >> n >> a >> b >> c;
+    if ((a + b + c) == n)
+        cout << 3 << endl;
+    else if ((a + b) == n || (b + c) == n || (c + a) == n)
+        cout << 2 << endl;
+    else if (a == n || b == n || c == n)
+        cout << 1 << endl;
+    else
+    {
+        int x, y, z;
+        x = y = z = 0;
+        if (n % a <= 1)
+            x = n / a;
+        if (n % b <= 1)
+            y = n / b;
+        if (n % c <= 1)
+            z = n / c;
+        cout << max(x, max(y, z)) << endl;
+    }
 
 #ifndef ONLINE_JUDGE
-    fprintf(stderr,"\nRuntime: %.10fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC);
+    fprintf(stderr, "\nRuntime: %.10fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC);
 #endif
     return 0;
 }

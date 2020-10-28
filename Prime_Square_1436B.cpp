@@ -54,10 +54,44 @@ int main()
     freopen("output.txt", "w", stdout);
 #endif
 
-    
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int n;
+        cin >> n;
+        ll ar[n][n] = {0};
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if ((i == j) || ((n - 1) - i == j))
+                    ar[i][j] = 1;
+                else
+                    ar[i][j] = 0;
+            }
+        }
+        if (n & 1)
+        {
+            ar[n / 2][(n + 1) / 2 - 2] = 1;
+            ar[n / 2-1][(n + 1) / 2 -1] = 1;
+        }
+
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (j == 0)
+                    cout << ar[i][j];
+                else
+                    cout << " " << ar[i][j];
+            }
+            cout << endl;
+        }
+    }
 
 #ifndef ONLINE_JUDGE
-    fprintf(stderr,"\nRuntime: %.10fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC);
+    fprintf(stderr, "\nRuntime: %.10fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC);
 #endif
     return 0;
 }

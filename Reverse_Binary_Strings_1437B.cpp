@@ -54,10 +54,29 @@ int main()
     freopen("output.txt", "w", stdout);
 #endif
 
-    
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int cnt1 = 0, cnt2 = 0, n;
+        cin >> n;
+        string st;
+        cin >> st;
+        for (int i = 0; i < st.size() - 1; i++)
+        {
+            if (st[i] == st[i + 1] && st[i] == '1')
+                cnt1++;
+        }
+        for (int i = 0; i < st.size() - 1; i++)
+        {
+            if (st[i] == st[i + 1] && st[i] == '0')
+                cnt2++;
+        }
+        cout << max(cnt1, cnt2) << endl;
+    }
 
 #ifndef ONLINE_JUDGE
-    fprintf(stderr,"\nRuntime: %.10fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC);
+    fprintf(stderr, "\nRuntime: %.10fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC);
 #endif
     return 0;
 }
