@@ -48,16 +48,9 @@ ll funFactorial(ll n)
 
 int main()
 {
-#ifndef ONLINE_JUDGE
-    clock_t tStart = clock();
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-#endif
 
-    
+    string s1 = "110", s2 = "101";
+    cout << min(s1, s2) << endl;
 
-#ifndef ONLINE_JUDGE
-    fprintf(stderr,"\nRuntime: %.10fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC);
-#endif
     return 0;
 }
