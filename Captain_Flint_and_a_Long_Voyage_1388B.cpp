@@ -45,35 +45,27 @@ int main()
     cin >> t;
     while (t--)
     {
-        int ar[110] = {0}, cnt = 0, j = 0, one = 0;
-        string st;
-        cin >> st;
-        for (int i = 0; i < st.size(); i++)
+        int x;
+        ll n;
+        cin >> n;
+        if (n % 4)
         {
-            if (st[i] == '1')
-            {
-                if (i == st.size() - 1 && st[i] == '1' && cnt)
-                {
-                    cnt++;
-                    ar[j++] = cnt;
-                    cnt = 0;
-                }
-                else if (st[i] == st[i + 1])
-                    cnt++;
-                else if (st[i] != st[i + 1] && cnt)
-                {
-                    cnt++;
-                    ar[j++] = cnt;
-                    cnt = 0;
-                }
-                else
-                    ar[j++] = 1;
-            }
+            x = (n / 4) + 1;
+            for (int i = 0; i < n - x; i++)
+                cout << '9';
+            for (int i = 0; i < x; i++)
+                cout << '8';
+            cout << endl;
         }
-        sort(ar, ar + j, greater<int>());
-        for (int i = 0; i < j; i += 2)
-            cnt += ar[i];
-        cout << cnt << endl;
+        else
+        {
+            x = (n / 4);
+            for (int i = 0; i < n - x; i++)
+                cout << '9';
+            for (int i = 0; i < x; i++)
+                cout << '8';
+            cout << endl;
+        }
     }
 
 #ifndef ONLINE_JUDGE
