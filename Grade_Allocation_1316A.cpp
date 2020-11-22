@@ -45,31 +45,28 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n, T, flag = 0;
-        cin >> n >> T;
-        ll x = T / 2;
-        int ar[n];
-        for (int i = 0; i < n; i++)
+        ll n, m;
+        cin >> n >> m;
+        ll ar[n + 5];
+        for (ll i = 1; i <= n; i++)
         {
-            ll k;
-            cin >> k;
-            if (!(T & 1) && (x == k))
+            cin >> ar[i];
+            if (ar[1] <= m && i > 1)
             {
-                ar[i] = (flag++) % 2;
+                ll x = m - ar[1];
+                if (x <= ar[i])
+                {
+                    ar[1] += x;
+                    ar[i] -= x;
+                }
+                else
+                {
+                    ar[1] += ar[i];
+                    ar[i] = 0;
+                }
             }
-            else if ((2*k)<T)
-                ar[i] = 0;
-            else
-                ar[i] = 1;
         }
-        for (int i = 0; i < n; i++)
-        {
-            if (i == 0)
-                cout << ar[i];
-            else
-                cout << " " << ar[i];
-        }
-        cout << endl;
+        cout << ar[1] << endl;
     }
 
 #ifndef ONLINE_JUDGE
