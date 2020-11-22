@@ -1,10 +1,22 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+
+ll funFactorial(ll n)
+{
+    if (n == 0)
+        return 1;
+    return n * funFactorial(n - 1);
+}
+
 int main()
 {
-    const char a[] = "ibrahim hossain akash";
-    const char b[] = "hossain";
-    char *x = strstr(a, b);
-    printf("%s\n", x);
+    ll M, N, sum;
+    while (cin >> M >> N)
+    {
+        sum = funFactorial(M) + funFactorial(N);
+        cout << sum << endl;
+    }
+
+    return 0;
 }
