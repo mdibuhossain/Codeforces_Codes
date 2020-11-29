@@ -1,3 +1,4 @@
+//#include<bits/stdc++.h>
 #include <iostream>
 #include <algorithm>
 #include <cstdio>
@@ -25,7 +26,6 @@
 #include <limits>
 using namespace std;
 typedef long long int ll;
-
 ll funFactorial(ll n)
 {
     if (n == 0)
@@ -45,23 +45,34 @@ int main()
     cin >> t;
     while (t--)
     {
-        int n, nini = 0, x = 0, flag = 0;
+        int MX = 1e6;
+        int n, ps, flag = 0;
         cin >> n;
-        string st;
-        cin >> st;
-        for (int i = 0; i < st.size(); i++)
+        map<int, int> mp;
+        vector<int> vt;
+        vector<int>::iterator it;
+        for (int i = 0; i < n; i++)
         {
-            if (st[i] == 'A')
-            {
-                nini = max(nini, x);
-                x = 0;
-                flag = 1;
-            }
-            else if (st[i] == 'P' && flag)
-                x++;
+            int k;
+            cin >> k;
+            vt.push_back(k);
+            mp[k]++;
         }
-        nini = max(nini, x);
-        cout << nini << endl;
+        for (int i = 0; i < n; i++)
+        {
+            if (mp[vt[i]] == 1)
+            {
+                flag = 1;
+                MX = min(MX, vt[i]);
+            }
+        }
+        if (flag)
+        {
+            it = find(vt.begin(), vt.end(), MX);
+            cout << it - vt.begin() + 1 << endl;
+        }
+        else
+            cout << "-1" << endl;
     }
 
 #ifndef ONLINE_JUDGE

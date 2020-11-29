@@ -25,7 +25,8 @@
 #include <limits>
 using namespace std;
 typedef long long int ll;
-
+ll mn = 1e18;
+int ar[1000000];
 ll funFactorial(ll n)
 {
     if (n == 0)
@@ -41,27 +42,40 @@ int main()
     freopen("output.txt", "w", stdout);
 #endif
 
-    int t;
-    cin >> t;
-    while (t--)
+    int n, m, k, flag = -1;
+    vector<pair<pair<int, int>, ll>> vt;
+    cin >> n >> m >> k;
+    while (m--)
     {
-        int n, nini = 0, x = 0, flag = 0;
-        cin >> n;
-        string st;
-        cin >> st;
-        for (int i = 0; i < st.size(); i++)
+        ll u, v, l;
+        cin >> u >> v >> l;
+        vt.push_back({{u, v}, l});
+    }
+    if (k == 0)
+    {
+        cout << -1 << endl;
+        return 0;
+    }
+    else
+    {
+        for (int i = 0; i < k; i++)
         {
-            if (st[i] == 'A')
-            {
-                nini = max(nini, x);
-                x = 0;
-                flag = 1;
-            }
-            else if (st[i] == 'P' && flag)
-                x++;
+            int k;
+            cin >> k;
+            ar[k] = 1;
         }
-        nini = max(nini, x);
-        cout << nini << endl;
+        int x, y;
+        ll z;
+        for (int i = 0; i < vt.size(); i++)
+        {
+            x = vt[i].first.first, y = vt[i].first.second, z = vt[i].second;
+            if (!ar[x] && ar[y] || ar[x] && !ar[y])
+                mn = min(mn, z);
+        }
+        if (mn == 1e18)
+            cout << "-1\n";
+        else
+            cout << mn << endl;
     }
 
 #ifndef ONLINE_JUDGE

@@ -1,3 +1,4 @@
+//#include<bits/stdc++.h>
 #include <iostream>
 #include <algorithm>
 #include <cstdio>
@@ -45,23 +46,20 @@ int main()
     cin >> t;
     while (t--)
     {
-        int n, nini = 0, x = 0, flag = 0;
-        cin >> n;
-        string st;
-        cin >> st;
-        for (int i = 0; i < st.size(); i++)
+        int n, x, a, b;
+        cin >> n >> x >> a >> b;
+        if (!x || ((a == 1 || a == n) && (b == 1 || b == n)))
+            cout << abs(a - b) << endl;
+        else
         {
-            if (st[i] == 'A')
-            {
-                nini = max(nini, x);
-                x = 0;
-                flag = 1;
-            }
-            else if (st[i] == 'P' && flag)
-                x++;
+            int st;
+            if (a > b)
+                st = (b - 1) + (n - a);
+            else
+                st = (a - 1) + (n - b);
+            if(x >= st) cout << st + abs(a-b) << endl;
+            else cout << x + abs(a-b) << endl;
         }
-        nini = max(nini, x);
-        cout << nini << endl;
     }
 
 #ifndef ONLINE_JUDGE

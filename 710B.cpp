@@ -41,29 +41,22 @@ int main()
     freopen("output.txt", "w", stdout);
 #endif
 
-    int t;
-    cin >> t;
-    while (t--)
+    ll n;
+    cin >> n;
+    vector<ll> v1;
+    vector<ll> v2;
+    vector<ll>::iterator it;
+    for (ll i = 0; i < n; i++)
     {
-        int n, nini = 0, x = 0, flag = 0;
-        cin >> n;
-        string st;
-        cin >> st;
-        for (int i = 0; i < st.size(); i++)
-        {
-            if (st[i] == 'A')
-            {
-                nini = max(nini, x);
-                x = 0;
-                flag = 1;
-            }
-            else if (st[i] == 'P' && flag)
-                x++;
-        }
-        nini = max(nini, x);
-        cout << nini << endl;
+        ll k;
+        cin >> k;
+        v1.push_back(k);
     }
-
+    v2 = v1;
+    sort(v2.begin(), v2.end());ll val;
+    if(n&1) val = v2[v2.size()/2];
+    else val = v2[v2.size()/2 - 1];
+    cout << val << endl;
 #ifndef ONLINE_JUDGE
     fprintf(stderr, "\nRuntime: %.10fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC);
 #endif

@@ -1,3 +1,4 @@
+//#include<bits/stdc++.h>
 #include <iostream>
 #include <algorithm>
 #include <cstdio>
@@ -45,23 +46,43 @@ int main()
     cin >> t;
     while (t--)
     {
-        int n, nini = 0, x = 0, flag = 0;
+        int MX = 1e6;
+        int n;
         cin >> n;
-        string st;
-        cin >> st;
-        for (int i = 0; i < st.size(); i++)
+        vector<int> vt;
+        map<int, int> mp;
+        for (int i = 0; i < n; i++)
         {
-            if (st[i] == 'A')
+            int k;
+            cin >> k;
+            vt.push_back(k);
+            if (i > 0)
             {
-                nini = max(nini, x);
-                x = 0;
-                flag = 1;
+                if (vt[i] != vt[i - 1])
+                    mp[vt[i - 1]]++;
             }
-            else if (st[i] == 'P' && flag)
-                x++;
         }
-        nini = max(nini, x);
-        cout << nini << endl;
+        mp[vt[n - 1]]++;
+        if ((mp.size() == 1 && n > 1) || n == 1)
+            cout << "0" << endl;
+        else if (mp.size() == n && n > 1)
+            cout << "1" << endl;
+        else
+        {
+            for (int i = 0; i < n; i++)
+            {
+                if (vt[i] == vt[0] || vt[n - 1] == vt[i])
+                {
+                    if (vt[i] == vt[0] && vt[n - 1] == vt[i])
+                        MX = min(MX, mp[vt[i]] - 1);
+                    else
+                        MX = min(MX, mp[vt[i]]);
+                }
+                else
+                    MX = min(MX, mp[vt[i]] + 1);
+            }
+            cout << MX << endl;
+        }
     }
 
 #ifndef ONLINE_JUDGE

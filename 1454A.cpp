@@ -1,3 +1,4 @@
+//#include<bits/stdc++.h>
 #include <iostream>
 #include <algorithm>
 #include <cstdio>
@@ -43,29 +44,21 @@ int main()
 
     int t;
     cin >> t;
-    while (t--)
+    while(t--)
     {
-        int n, nini = 0, x = 0, flag = 0;
+        int n;
         cin >> n;
-        string st;
-        cin >> st;
-        for (int i = 0; i < st.size(); i++)
+        cout << n << " ";
+        for(int i = 1; i < n; i++)
         {
-            if (st[i] == 'A')
-            {
-                nini = max(nini, x);
-                x = 0;
-                flag = 1;
-            }
-            else if (st[i] == 'P' && flag)
-                x++;
+            if(i==1) cout << i;
+            else cout << " " << i;
         }
-        nini = max(nini, x);
-        cout << nini << endl;
+        cout << endl;
     }
 
 #ifndef ONLINE_JUDGE
-    fprintf(stderr, "\nRuntime: %.10fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC);
+    fprintf(stderr,"\nRuntime: %.10fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC);
 #endif
     return 0;
 }
