@@ -31,31 +31,43 @@
 using namespace std;
 using ll = long long int;
 
-// int GCD(int n1, int n2)
-// {
-// 	if(n2)
-// 		return GCD(n2, n1%n2);
-// 	return n1;
-// }
+
 
 // ll funFactorial(ll n) {if (n == 0) return 1;return n * funFactorial(n - 1);}
 
+//--------------------GCD_Start---------------
+/*
+int GCD(int n1, int n2)
+{
+	if(n2)
+		return GCD(n2, n1%n2);
+	return n1;
+}
+*/
+//--------------------GCD_End-----------------
 
-// bool prime[100000000];
-// ll isPrime(ll n)
-// {
-// 	if(n < 2) return false;
-// 	return prime[n];
-// }
-// void seive(ll n)
-// {
-// 	for(ll i = 2; i <= n; i++)
-// 		if(prime[i])
-// 		{
-// 			for(ll j = i * i; j <= n; j += i)
-// 				prime[j] = false;
-// 		}
-// }
+
+// --------------Sieve_Prime_Start------------
+/*
+bool prime[100000000];
+ll isPrime(ll n)
+{
+	if(n < 2) return false;
+	return prime[n];
+}
+void sieve(ll n)
+{
+	for(ll i = 2; i <= n; i++)
+		if(prime[i])
+		{
+			for(ll j = i * i; j <= n; j += i)
+				prime[j] = false;
+		}
+}
+*/
+// --------------Sieve_Prime_Start------------
+
+
 
 int main()
 {
@@ -67,6 +79,7 @@ int main()
 //---------------------------code_start_from_here-------------------------
 
 
+
 	int t; cin >> t;
 	while(t--)
 	{
@@ -74,6 +87,7 @@ int main()
 		cin >> n >> m >> r >> c;
 		cout << max(r-1, n-r) + max(c-1, m-c) << endl;
 	}
+
 
 
 //---------------------------code_finished--------------------------------
