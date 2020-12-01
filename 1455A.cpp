@@ -67,27 +67,7 @@ void seive(ll n)
 */
 // --------------Seive_Prime_Start------------
 
-vector<int>vp;
-vector<int>vn;
-void vecFull(void)
-{
-	int MX = 1e6+5;
-	int x = 1;
-	vp.push_back(x);
-	for(int i = 2; x <= MX; i++)
-	{
-		x += i;
-		vp.push_back(x);
-	}
-	x = -1;
-	vn.push_back(x);
-	for(int i = 2; x <= MX; i++)
-	{
-		x += i;
-		vn.push_back(x);
-	}
-	return;
-}
+
 
 int main()
 {
@@ -100,11 +80,14 @@ int main()
 
 
 
-	vecFull();
-	auto it1 = find(vp.begin(), vp.end(), 6);
-	if(it1 != vp.end())
-		cout << it1-vp.begin()+1 << endl;
-	else cout << "NOT FIND" << endl;
+	int t;
+	scanf("%d", &t);
+	while(t--)
+	{
+		char st[105];
+		scanf("%s", st);
+		cout << strlen(st) << endl;
+	}
 
 
 

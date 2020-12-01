@@ -67,27 +67,7 @@ void seive(ll n)
 */
 // --------------Seive_Prime_Start------------
 
-vector<int>vp;
-vector<int>vn;
-void vecFull(void)
-{
-	int MX = 1e6+5;
-	int x = 1;
-	vp.push_back(x);
-	for(int i = 2; x <= MX; i++)
-	{
-		x += i;
-		vp.push_back(x);
-	}
-	x = -1;
-	vn.push_back(x);
-	for(int i = 2; x <= MX; i++)
-	{
-		x += i;
-		vn.push_back(x);
-	}
-	return;
-}
+
 
 int main()
 {
@@ -100,11 +80,40 @@ int main()
 
 
 
-	vecFull();
-	auto it1 = find(vp.begin(), vp.end(), 6);
-	if(it1 != vp.end())
-		cout << it1-vp.begin()+1 << endl;
-	else cout << "NOT FIND" << endl;
+	int t; cin >> t;
+	while(t--)
+	{
+		int n, k, mn = 0, container, cnt = 0;
+		cin >> n >> k;
+		vector<int>vt;
+		map<int, int>mp;
+		for(int i = 0; i < n; ++i)
+		{
+			int x; cin >> x;
+			vt.push_back(x);
+			mp[x]++;
+		}
+		for(auto it = mp.begin(); it!=mp.end(); it++)
+		{
+			if(it->second > mn)
+			{
+				mn = it->second;
+				container = it->first;
+			}
+			// cout << it->first << " = " << it->second << endl;
+		}
+		// cout << "container: " << container << endl;
+		for(int i = 0; i < n; i++)
+		{
+			if(vt[i] != container)
+			{
+				for(int j = i; j < i+k && j < vt.size(); j++)
+					vt[j] = container;
+				cnt++;
+			}
+		}
+		cout << cnt << endl;
+	}
 
 
 
