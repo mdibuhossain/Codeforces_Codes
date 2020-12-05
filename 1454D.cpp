@@ -24,10 +24,10 @@
 #include <numeric>
 #include <utility>
 #include <limits>
-#define READ()        freopen("input", "r", stdin)
-#define WRITE()        freopen("output", "w", stdout)
-#define TIME()        fprintf(stderr,"Runtime: %.10fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC)
-#define CLOCK()        clock_t tStart = clock()
+#define READ()      freopen("input", "r", stdin)
+#define WRITE()     freopen("output", "w", stdout)
+#define TIME()      fprintf(stderr,"Runtime: %.10fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC)
+#define CLOCK()     clock_t tStart = clock()
 using namespace std;
 using ll = long long int;
 
@@ -40,7 +40,9 @@ int GCD(int n1, int n2)
 
 ll funFactorial(ll n) {if (n == 0) return 1;return n * funFactorial(n - 1);}
 
-bool prime[100000000];
+vector<ll>primes;
+// ll primes[1000005];
+bool prime[1000005];
 ll isPrime(ll n)
 {
     if(n < 2) return false;
@@ -54,6 +56,11 @@ void seive(ll n)
             for(ll j = i * i; j <= n; j += i)
                 prime[j] = false;
         }
+    // int k = 0;
+    // primes[k++] = 2;
+    primes.push_back(2);
+    for(ll i = 3; i <= n; i += 2)
+        if(isPrime(i)) primes.push_back(i);
 }
 
 int main()
@@ -67,44 +74,47 @@ int main()
 
 
     memset(prime, true, sizeof(prime));
-    seive(10000000000);
-    int t;
-    cin >> t;
-    while (t--)
+    seive(1000005);
+    int t; cin >> t;
+    while(t--)
     {
-        ll n;
-        cin >> n;
-        if (n == 2)
-            cout << "1\n2" << endl;
-        else if (n & 1)
-            cout << "1\n"
-                 << n << endl;
-        else
+        ll n, container; cin >> n;
+        ll carr = n;
+        int count = 0;
+        // Prime Factorizatoin
+        for(ll i = 0; primes[i] * primes[i] <= n; i++)
         {
-            // prime factorization
-            vector<ll> vt;
-            while (true)
+            int cnt = 0;
+            if(!(n%primes[i]))
             {
-                ll x = n / 2;
-                n /= 2;
-                if (!(x & 1))
-                    vt.push_back(2);
-                else
+                while(!(n%primes[i]))
                 {
-                    vt.push_back(x * 2);
-                    break;
+                    cnt++;
+                    n /= primes[i];
                 }
             }
-            cout << vt.size() << endl;
-            for (int i = 0; i < vt.size(); i++)
+            if(cnt > count)
             {
-                if (i == 0)
-                    cout << vt[i];
-                else
-                    cout << " " << vt[i];
+                count = cnt;
+                container = primes[i];
             }
-            cout << endl;
         }
+        if(carr == n)
+        {
+            cout << "1\n" << n << endl;
+            continue;
+        }
+        cout << count << endl;
+        --count;
+        ll res = 1;
+        while(count)
+        {
+            cout << container << " ";
+            res *= container;
+            count--;
+        }
+        cout << carr/res << endl;
+
     }
 
 
