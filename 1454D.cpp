@@ -81,6 +81,7 @@ int main()
                  << n << endl;
         else
         {
+            // prime factorization
             vector<ll> vt;
             while (true)
             {
