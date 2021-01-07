@@ -28,6 +28,9 @@
 #define WRITE()		freopen("output", "w", stdout)
 #define TIME()		fprintf(stderr,"Runtime: %.10fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC)
 #define CLOCK()		clock_t tStart = clock()
+#define FASTio	ios_base::sync_with_stdio(false); \
+				cin.tie(NULL);
+#define endl '\n'
 using namespace std;
 using ll = long long int;
 
@@ -67,27 +70,7 @@ void seive(ll n)
 */
 // --------------Seive_Prime_Start------------
 
-vector<int>vp;
-vector<int>vn;
-void vecFull(void)
-{
-	int MX = 1e6+5;
-	int x = 1;
-	vp.push_back(x);
-	for(int i = 2; x <= MX; i++)
-	{
-		x += i;
-		vp.push_back(x);
-	}
-	x = -1;
-	vn.push_back(x);
-	for(int i = 2; x <= MX; i++)
-	{
-		x += i;
-		vn.push_back(x);
-	}
-	return;
-}
+
 
 int main()
 {
@@ -99,12 +82,28 @@ int main()
 //---------------------------code_start_from_here-------------------------
 
 
-
-	vecFull();
-	auto it1 = find(vp.begin(), vp.end(), 6);
-	if(it1 != vp.end())
-		cout << it1-vp.begin()+1 << endl;
-	else cout << "NOT FIND" << endl;
+	FASTio;
+	int t;
+	cin >> t;
+	while(t--)
+	{
+		int n, cnt = 0, ln;
+		cin >> n;
+		string st;
+		cin >> st;
+		ln = st.size();
+		reverse(st.begin(), st.end());
+		for(auto it : st)
+		{
+			if(it == ')')
+				cnt++;
+			else
+				break;
+		}
+		if((ln - cnt) >= cnt)
+			cout << "NO" << endl;
+		else cout << "YES" << endl;
+	}
 
 
 
