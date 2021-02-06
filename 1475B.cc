@@ -43,6 +43,38 @@ int main()
     FiO;
     ui t;
     cin >> t;
+    while (t--)
+    {
+        ui n;
+        cin >> n;
+        bool flag = true;
+        if (n >= 2020)
+        {
+            if (!(n % 2020) || !(n % 2021))
+                cout << "YES" << endl;
+            else
+            {
+                int sum = 0;
+                for (int i = 1; i <= (n / 2020); i++)
+                {
+                    sum = i * 2020;
+                    int xx = n - sum;
+                    if (!(xx % 2021))
+                    {
+                        cout << "YES" << endl;
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag)
+                {
+                    cout << "NO" << endl;
+                }
+            }
+        }
+        else
+            cout << "NO" << endl;
+    }
 
     //--------------------------FINISHED--------------------------
 

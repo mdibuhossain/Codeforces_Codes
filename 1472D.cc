@@ -30,6 +30,7 @@
 #define CLOCK()		clock_t tStart = clock()
 #define FASTio	ios_base::sync_with_stdio(false); \
 				cin.tie(NULL);
+#define pb push_back
 #define endl '\n'
 using namespace std;
 using ll = long long int;
@@ -68,44 +69,64 @@ void seive(ll n)
 		}
 }
 */
-// --------------Seive_Prime_Start------------
+// --------------Seive_Prime_Stop------------
 
 
 
 int main()
 {
-#ifndef ONLINE_JUDGE
-	CLOCK();
-	READ();
-	//WRITE();
-#endif
+	#ifndef ONLINE_JUDGE
+		CLOCK();
+		//READ();
+		//WRITE();
+	#endif
 //---------------------------code_start_from_here-------------------------
 
 
 	FASTio;
-	int t;
-	cin >> t;
-	while (t--)
+	int t; cin >> t;
+	while(t--)
 	{
-		ll n, a, b;
-		cin >> n >> a >> b;
-		ll m1 , m2;
-		m1 = n * a;
-		ll nn = n / 2;
-		m2 = nn * b;
-		if ((n - (nn * 2)) >= 0)
+		int n; cin >> n;
+		// vector<ll>cont(n + 1);
+		int cont[n];
+		ll a = 0, b  = 0;
+		for(int i = 0; i < n; i++)
 		{
-			m2 += ll(n - (nn * 2)) * a;
+			cin >> cont[i];
+			// ll inp; cin >> inp;
+			// cont.pb(inp);
 		}
-		cout << min(m1, m2) << endl;
+		// sort(cont.begin(), cont.end());
+		// reverse(cont.begin(), cont.end());
+		sort(cont, cont + n, greater<ll>());
+		for(int i = 0; i < n; i++)
+		{
+			if(i&1)
+			{
+				if(cont[i]&1)
+					b += cont[i];
+			}
+			else
+			{
+				if(!(cont[i]&1))
+					a += cont[i];
+			}
+		}
+		if(a == b)
+			cout << "Tie" << endl;
+		else if(a > b)
+			cout << "Alice" << endl;
+		else cout << "Bob" << endl;
+
 	}
 
 
 
 //---------------------------code_finished--------------------------------
 
-#ifndef ONLINE_JUDGE
-	TIME();
-#endif
+	#ifndef ONLINE_JUDGE
+		TIME();
+	#endif
 	return 0;
 }

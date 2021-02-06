@@ -24,81 +24,57 @@
 #include <numeric>
 #include <utility>
 #include <limits>
+#define endl '\n'
 #define READ()		freopen("input", "r", stdin)
 #define WRITE()		freopen("output", "w", stdout)
 #define TIME()		fprintf(stderr,"Runtime: %.10fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC)
 #define CLOCK()		clock_t tStart = clock()
 #define FASTio	ios_base::sync_with_stdio(false); \
 				cin.tie(NULL);
-#define endl '\n'
-using namespace std;
-using ll = long long int;
 
+#define pb push_back
+#define vi vector<int>
+#define vll vector<ll>
+#define vLL vector<ll>
+#define Mii map<int, int>
+#define Msi map<string, int>
+#define Mci map<c, int>
+#define ll long long int
+#define LL long long int
+#define ui unsigned int
+
+using namespace std;
 
 
 // ll funFactorial(ll n) {if (n == 0) return 1;return n * funFactorial(n - 1);}
-
-//--------------------GCD_Start---------------
-/*
-int GCD(int n1, int n2)
-{
-	if(n2)
-		return GCD(n2, n1%n2);
-	return n1;
-}
-*/
-//--------------------GCD_End-----------------
-
-
-// --------------Seive_Prime_Start------------
-/*
-bool prime[100000000];
-ll isPrime(ll n)
-{
-	if(n < 2) return false;
-	return prime[n];
-}
-void seive(ll n)
-{
-	for(ll i = 2; i <= n; i++)
-		if(prime[i])
-		{
-			for(ll j = i * i; j <= n; j += i)
-				prime[j] = false;
-		}
-}
-*/
-// --------------Seive_Prime_Start------------
-
 
 
 int main()
 {
 #ifndef ONLINE_JUDGE
 	CLOCK();
-	READ();
+	//READ();
 	//WRITE();
 #endif
 //---------------------------code_start_from_here-------------------------
 
 
 	FASTio;
-	int t;
-	cin >> t;
-	while (t--)
+	ui n; cin >> n;
+	ui vt[n];
+	ui day = 0, cont = 1;
+	for (ui i = 0; i < n; i++)
+		cin >> vt[i];
+	sort(vt, vt + n);
+	for (ui i = 0; i < n; i++)
 	{
-		ll n, a, b;
-		cin >> n >> a >> b;
-		ll m1 , m2;
-		m1 = n * a;
-		ll nn = n / 2;
-		m2 = nn * b;
-		if ((n - (nn * 2)) >= 0)
+		if (vt[i] >= cont)
 		{
-			m2 += ll(n - (nn * 2)) * a;
+			day++;
+			cont++;
 		}
-		cout << min(m1, m2) << endl;
 	}
+	cout << day << endl;
 
 
 

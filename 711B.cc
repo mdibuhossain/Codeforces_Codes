@@ -30,6 +30,7 @@
 #define CLOCK()		clock_t tStart = clock()
 #define FASTio	ios_base::sync_with_stdio(false); \
 				cin.tie(NULL);
+#define pb push_back
 #define endl '\n'
 using namespace std;
 using ll = long long int;
@@ -68,44 +69,106 @@ void seive(ll n)
 		}
 }
 */
-// --------------Seive_Prime_Start------------
+// --------------Seive_Prime_Stop------------
 
 
 
 int main()
 {
-#ifndef ONLINE_JUDGE
-	CLOCK();
-	READ();
-	//WRITE();
-#endif
+	#ifndef ONLINE_JUDGE
+		CLOCK();
+		//READ();
+		//WRITE();
+	#endif
 //---------------------------code_start_from_here-------------------------
 
 
 	FASTio;
-	int t;
-	cin >> t;
-	while (t--)
+	int n;
+	cin >> n;
+	ll ar[n][n], sum[5] = {0};
+	map<ll, int>mp;
+	for(int i = 0; i < n; i++)
 	{
-		ll n, a, b;
-		cin >> n >> a >> b;
-		ll m1 , m2;
-		m1 = n * a;
-		ll nn = n / 2;
-		m2 = nn * b;
-		if ((n - (nn * 2)) >= 0)
+		for(int j = 0; j < n; j++)
 		{
-			m2 += ll(n - (nn * 2)) * a;
+			cin >> ar[i][j];
 		}
-		cout << min(m1, m2) << endl;
 	}
+	bool f1 = false;
+	bool f2 = false;
+	for(int i = 0; i < n; i++)
+	{
+		for(int j = 0; j < n; j++)
+		{
+			if(ar[i][j] == 0)
+				f1 = true;
+			sum[0] += ar[i][j];
+			sum[3] += ar[j][i];
+			if(ar[i][j] == 0)
+				f2 = true;
+			if(i == j)
+			{
+				sum[1] += ar[i][j];
+			}
+			if(j == (n - i - 1))
+			{
+				sum[2] += ar[i][j];
+			}
+		}
+		mp[sum[0]]++;
+		mp[sum[3]]++;
+		if(f2)
+		{
+			sum[4] = sum[0];
+			f2 = false;
+		}
+		sum[0] = 0;
+		sum[3] = 0;
+	}
+	mp[sum[1]]++;
+	mp[sum[2]]++;
+	if(f1 && n == 1)
+		cout << "1" << endl;
+	else if(mp.size() != 2)
+		cout << "-1" << endl;
+	else if(mp.size() == 2)
+	{
+		bool f3 = true;
+		for(auto it : mp)
+		{
+			if(it.first < sum[4])
+			{
+				f3 = false;
+				cout << "-1" << endl;
+				break;
+			}
+		}
+		if(f3)
+		{
+			ll x = 0;
+			int i = 0;
+			for(auto it : mp)
+			{
+				if(i = 0)
+				{
+					x = it.first;
+					i++;
+				}
+				else
+					x = it.first - x;
+			}
+			cout << x << endl;
+		}
+	}
+
 
 
 
 //---------------------------code_finished--------------------------------
 
-#ifndef ONLINE_JUDGE
-	TIME();
-#endif
+	#ifndef ONLINE_JUDGE
+		TIME();
+	#endif
 	return 0;
 }

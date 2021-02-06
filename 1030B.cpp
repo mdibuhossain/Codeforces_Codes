@@ -71,11 +71,11 @@ void seive(ll n)
 
 int main()
 {
-	#ifndef ONLINE_JUDGE
-		CLOCK();
-		//READ();
-		//WRITE();
-	#endif
+#ifndef ONLINE_JUDGE
+	CLOCK();
+	//READ();
+	//WRITE();
+#endif
 //---------------------------code_start_from_here-------------------------
 
 
@@ -83,13 +83,13 @@ int main()
 	int n, d, m;
 	cin >> n >> d;
 	cin >> m;
-	while(m--)
+	while (m--)
 	{
 		int a, b, flag = 0;
 		cin >> a >> b;
-		if(((a - b) >= -d && (a - b) <= d) && ((a + b) >= d && (a + b) <= n + n - d))
+		if (((a - b) >= -d && (a - b) <= d) && ((a + b) >= d && (a + b) <= n + n - d))
 			flag = 1;
-		if(flag) cout << "YES" << endl;
+		if (flag) cout << "YES" << endl;
 		else cout << "NO" << endl;
 	}
 
@@ -97,8 +97,8 @@ int main()
 
 //---------------------------code_finished--------------------------------
 
-	#ifndef ONLINE_JUDGE
-		TIME();
-	#endif
+#ifndef ONLINE_JUDGE
+	TIME();
+#endif
 	return 0;
 }

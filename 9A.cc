@@ -30,6 +30,7 @@
 #define CLOCK()		clock_t tStart = clock()
 #define FASTio	ios_base::sync_with_stdio(false); \
 				cin.tie(NULL);
+#define pb push_back
 #define endl '\n'
 using namespace std;
 using ll = long long int;
@@ -68,44 +69,47 @@ void seive(ll n)
 		}
 }
 */
-// --------------Seive_Prime_Start------------
+// --------------Seive_Prime_Stop------------
 
 
 
 int main()
 {
-#ifndef ONLINE_JUDGE
-	CLOCK();
-	READ();
-	//WRITE();
-#endif
+	#ifndef ONLINE_JUDGE
+		CLOCK();
+		//READ();
+		//WRITE();
+	#endif
 //---------------------------code_start_from_here-------------------------
 
 
 	FASTio;
-	int t;
-	cin >> t;
-	while (t--)
+	int y, w;
+	cin >> y >> w;
+	int mx = max(y, w);
+	int cnt = 0, ph = 6;
+	for(int i = 1 ; i <= 6; i++)
+		if(i >= mx)
+			cnt++;
+	if(!(ph % cnt))
 	{
-		ll n, a, b;
-		cin >> n >> a >> b;
-		ll m1 , m2;
-		m1 = n * a;
-		ll nn = n / 2;
-		m2 = nn * b;
-		if ((n - (nn * 2)) >= 0)
+		cout << "1/" << ph/cnt << endl;
+	}
+	else
+	{
+		if(!(cnt&1))
 		{
-			m2 += ll(n - (nn * 2)) * a;
+			cout << cnt / 2 << "/" << ph / 2 << endl;
 		}
-		cout << min(m1, m2) << endl;
+		else cout << cnt << "/" << ph << endl;
 	}
 
 
 
 //---------------------------code_finished--------------------------------
 
-#ifndef ONLINE_JUDGE
-	TIME();
-#endif
+	#ifndef ONLINE_JUDGE
+		TIME();
+	#endif
 	return 0;
 }

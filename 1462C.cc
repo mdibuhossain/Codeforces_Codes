@@ -24,17 +24,16 @@
 #include <numeric>
 #include <utility>
 #include <limits>
-#define READ()		freopen("input", "r", stdin)
-#define WRITE()		freopen("output", "w", stdout)
-#define TIME()		fprintf(stderr,"Runtime: %.10fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC)
-#define CLOCK()		clock_t tStart = clock()
-#define FASTio	ios_base::sync_with_stdio(false); \
-				cin.tie(NULL);
+#define READ() freopen("input", "r", stdin)
+#define WRITE() freopen("output", "w", stdout)
+#define TIME() fprintf(stderr, "Runtime: %.10fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC)
+#define CLOCK() clock_t tStart = clock()
+#define FASTio                        \
+	ios_base::sync_with_stdio(false); \
+	cin.tie(NULL);
 #define endl '\n'
 using namespace std;
 using ll = long long int;
-
-
 
 // ll funFactorial(ll n) {if (n == 0) return 1;return n * funFactorial(n - 1);}
 
@@ -48,7 +47,6 @@ int GCD(int n1, int n2)
 }
 */
 //--------------------GCD_End-----------------
-
 
 // --------------Seive_Prime_Start------------
 /*
@@ -70,43 +68,40 @@ void seive(ll n)
 */
 // --------------Seive_Prime_Start------------
 
-
-
 int main()
 {
-	#ifndef ONLINE_JUDGE
-		CLOCK();
-		READ();
-		//WRITE();
-	#endif
-//---------------------------code_start_from_here-------------------------
-
+#ifndef ONLINE_JUDGE
+	CLOCK();
+	READ();
+	//WRITE();
+#endif
+	//---------------------------code_start_from_here-------------------------
 
 	// FASTio;
 	int t;
 	cin >> t;
-	while(t--)
+	while (t--)
 	{
 		int n;
 		cin >> n;
-		if(n > 45)
+		if (n > 45)
 			cout << "-1" << endl;
-		else if(n < 10)
+		else if (n < 10)
 			cout << n << endl;
-		else if(n < 18)
+		else if (n < 18)
 		{
 			cout << (n - 9) << "9" << endl;
 		}
 		else
 		{
-			vector<int>vt;
+			vector<int> vt;
 			int nn = 0;
 			int cc = 9;
-			while(nn != n)
+			while (nn != n)
 			{
 				vt.push_back(cc);
 				nn += cc;
-				if((n - nn) < cc)
+				if ((n - nn) < cc)
 				{
 					vt.push_back(n - nn);
 					nn += (n - nn);
@@ -114,18 +109,16 @@ int main()
 				cc--;
 			}
 			sort(vt.begin(), vt.end());
-			for(auto it : vt)
+			for (auto it : vt)
 				cout << it;
 			cout << endl;
 		}
 	}
 
+	//---------------------------code_finished--------------------------------
 
-
-//---------------------------code_finished--------------------------------
-
-	#ifndef ONLINE_JUDGE
-		TIME();
-	#endif
+#ifndef ONLINE_JUDGE
+	TIME();
+#endif
 	return 0;
 }

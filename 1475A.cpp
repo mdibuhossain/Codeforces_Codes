@@ -34,8 +34,8 @@ int main()
 {
 #ifndef ONLINE_JUDGE
     CLOCK();
-    READ();
-    WRITE();
+    // READ();
+    // WRITE();
 #endif
 
     //--------------------------MAIN_CODE-------------------------
@@ -43,6 +43,32 @@ int main()
     FiO;
     ui t;
     cin >> t;
+    while (t--)
+    {
+        bool flag = true;
+        ll n;
+        cin >> n;
+        if (n & 1)
+            cout << "YES" << endl;
+        else
+        {
+            bool flag = true;
+            while (1)
+            {
+                if (n == 1)
+                    break;
+                if (n & 1 && n != 1)
+                {
+                    flag = false;
+                    cout << "YES" << endl;
+                    break;
+                }
+                n /= 2;
+            }
+            if (flag)
+                cout << "NO" << endl;
+        }
+    }
 
     //--------------------------FINISHED--------------------------
 

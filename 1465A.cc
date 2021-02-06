@@ -74,18 +74,18 @@ void seive(ll n)
 
 int main()
 {
-	#ifndef ONLINE_JUDGE
-		CLOCK();
-		//READ();
-		//WRITE();
-	#endif
+#ifndef ONLINE_JUDGE
+	CLOCK();
+	//READ();
+	//WRITE();
+#endif
 //---------------------------code_start_from_here-------------------------
 
 
 	FASTio;
 	int t;
 	cin >> t;
-	while(t--)
+	while (t--)
 	{
 		int n, cnt = 0, ln;
 		cin >> n;
@@ -93,14 +93,14 @@ int main()
 		cin >> st;
 		ln = st.size();
 		reverse(st.begin(), st.end());
-		for(auto it : st)
+		for (auto it : st)
 		{
-			if(it == ')')
+			if (it == ')')
 				cnt++;
 			else
 				break;
 		}
-		if((ln - cnt) >= cnt)
+		if ((ln - cnt) >= cnt)
 			cout << "NO" << endl;
 		else cout << "YES" << endl;
 	}
@@ -109,8 +109,8 @@ int main()
 
 //---------------------------code_finished--------------------------------
 
-	#ifndef ONLINE_JUDGE
-		TIME();
-	#endif
+#ifndef ONLINE_JUDGE
+	TIME();
+#endif
 	return 0;
 }

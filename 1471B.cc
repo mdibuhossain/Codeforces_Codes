@@ -24,53 +24,28 @@
 #include <numeric>
 #include <utility>
 #include <limits>
+#define endl '\n'
 #define READ()		freopen("input", "r", stdin)
 #define WRITE()		freopen("output", "w", stdout)
 #define TIME()		fprintf(stderr,"Runtime: %.10fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC)
 #define CLOCK()		clock_t tStart = clock()
 #define FASTio	ios_base::sync_with_stdio(false); \
 				cin.tie(NULL);
-#define pb push_back
-#define endl '\n'
-using namespace std;
-using ll = long long int;
 
+#define pb push_back
+#define vi vector<int>
+#define vll vector<ll>
+#define vLL vector<ll>
+#define Mii map<int, int>
+#define Msi map<string, int>
+#define Mci map<c, int>
+#define ll long long int
+#define LL long long int
+
+using namespace std;
 
 
 // ll funFactorial(ll n) {if (n == 0) return 1;return n * funFactorial(n - 1);}
-
-//--------------------GCD_Start---------------
-/*
-int GCD(int n1, int n2)
-{
-	if(n2)
-		return GCD(n2, n1%n2);
-	return n1;
-}
-*/
-//--------------------GCD_End-----------------
-
-
-// --------------Seive_Prime_Start------------
-/*
-bool prime[100000000];
-ll isPrime(ll n)
-{
-	if(n < 2) return false;
-	return prime[n];
-}
-void seive(ll n)
-{
-	for(ll i = 2; i <= n; i++)
-		if(prime[i])
-		{
-			for(ll j = i * i; j <= n; j += i)
-				prime[j] = false;
-		}
-}
-*/
-// --------------Seive_Prime_Stop------------
-
 
 
 int main()
@@ -88,26 +63,33 @@ int main()
 	cin >> t;
 	while(t--)
 	{
-		ll n, x, sum = 0;
+		ll n, x, sum = 0, idx = 0;
 		cin >> n >> x;
-		vector<ll>vv;
+		vLL vv;
+		bool div = true;
 		for(int i = 0; i < n; i++)
 		{
-			ll k;
-			cin >> k;
-			vv.pb(k);
-			sum += k;
+			ll inp;
+			cin >> inp;
+			vv.pb(inp);
+			sum += inp;
+			if(!(inp%x) && div)
+			{
+				ll fol = inp / x;
+				if(!(fol%x))
+					div = false;
+			}
 		}
 		// cout << sum << endl;
-		for(auto it : vv)
+		for(ll j = 0; j < n; j++)
 		{
 			ll i = 1, car;
-			car = it;
+			car = vv[j];
 			while(car%x==0)
 			{
 				car /= x;
 				sum +=  car * pow(x, i++);
-				cout << car << " " << sum << endl;
+				// cout << car << " " << sum << endl;
 			}
 		}
 		// cout << sum << endl;
