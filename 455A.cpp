@@ -62,39 +62,61 @@ int main()
     FiO;
     ui n;
     cin >> n;
-    int mx = 0, res = 0;
-    ui common = -1;
-    vector<ui> v1(n);
-    map<ui, int> m1;
+    vector<ui> vp(n);
+    vector<int> vc_nt(1e6, 0);
+    vector<pair<int, int>> vpp(n);
+    vector<pair<int, int>> vpp2(n);
+    map<ui, int> mp;
     for (int i = 0; i < n; i++)
     {
-        cin >> v1[i];
-    }
-    sort(v1.rbegin(), v1.rend());
-    for(int i = 0; i < n; i++)
-    {
-        m1[v1[i]]++;
-        if (m1[v1[i]] > mx)
+        cin >> vp[i];
+        if (vc_nt[vp[i]] == 1)
         {
-            mx = m1[v1[i]];
-            common = v1[i];
+            vpp[mp[vp[i]]].first++;
+            vpp2[mp[vp[i]]].second++;
+        }
+        else
+        {
+            vc_nt[vp[i]] = 1;
+            mp[vp[i]] = i;
+
+            vpp[i].first = 1;
+            vpp[i].second = vp[i];
+
+            vpp2[i].first = vp[i];
+            vpp2[i].second = 1;
         }
     }
-    res += mx * common;
-    m1[common] = 0;
-    m1[common - 1] = 0;
-    m1[common + 1] = 0;
-    for (int i = 0; i < n; i++)
+    vector<int> vc_nt2 = vc_nt;
+    sort(vpp.rbegin(), vpp.rend());
+    sort(vpp2.rbegin(), vpp2.rend());
+    ll point = 0, point2 = 0;
+    for (auto it : vpp)
     {
-        if(m1[v1[i]])
+        // cout << it.first << " " << it.second << endl;
+        if (it.first && it.second && vc_nt[it.second])
         {
-            res += m1[v1[i]] * v1[i];
-            m1[v1[i]] = 0;
-            m1[v1[i] + 1] = 0;
-            m1[v1[i] - 1] = 0;
+            point += it.first * it.second;
+            vc_nt[it.second] = 0;
+            vc_nt[it.second - 1] = 0;
+            vc_nt[it.second + 1] = 0;
         }
     }
-    cout << res << endl;
+    // cout << endl;
+    for (auto it : vpp2)
+    {
+        // cout << it.first << " " << it.second << endl;
+        if (it.first && it.second && vc_nt2[it.first])
+        {
+            point2 += it.first * it.second;
+            vc_nt2[it.first] = 0;
+            vc_nt2[it.first - 1] = 0;
+            vc_nt2[it.first + 1] = 0;
+        }
+    }
+
+    cout << max(point, point2) << endl;
+
     //--------------------------FINISHED--------------------------
     return 0;
 }
